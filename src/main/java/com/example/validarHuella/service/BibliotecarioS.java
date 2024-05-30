@@ -37,7 +37,7 @@ public class BibliotecarioS {
         Bibliotecario bibliotecario = userBibliotecario(usuario);
         if (bibliotecario != null && bibliotecario.getContrasena().equals(contrasena) && !isFinalizado(bibliotecario)){
             return bibliotecario.getNombre();
-        } else if (bibliotecario != null && isFinalizado(bibliotecario)) {
+        } else if (bibliotecario != null && isFinalizado(bibliotecario) && bibliotecario.getContrasena().equals(contrasena)) {
             return "1";
         }
         return "2";
