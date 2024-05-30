@@ -1,5 +1,4 @@
 package com.example.validarHuella.service;
-
 import com.digitalpersona.uareu.*;
 import com.example.validarHuella.entity.Estudiante;
 import com.example.validarHuella.repository.EstudianteR;
@@ -54,13 +53,14 @@ public class EstudianteS {
     public String saveI(String id) {
         try {
             Estudiante estudiante = new Estudiante();
-            URL url = new URL("xxxx");
+            String urlApi = System.getenv("URL_API");
+            URL url = new URL(urlApi);
             HttpURLConnection http = (HttpURLConnection) url.openConnection();
             http.setRequestMethod("POST");
             http.setDoOutput(true);
             http.setRequestProperty("Content-Type", "application/json");
-
-            String data = "[{\"cedula\":\"" + id + "\",\"appKey\":\"xxxx\"}]";
+            String psApi = System.getenv("PS_API");
+            String data = "[{\"cedula\":\"" + id + "\",\"appKey\":\""+psApi+"\"}]";
 
             http.getOutputStream().write(data.getBytes(StandardCharsets.UTF_8));
             if (existe(Long.parseLong(id))) {
